@@ -8,6 +8,6 @@
 
 @section('content')
 
+ @include('includes.suggestions')
 
-  @include('includes.suggestions')
 @endsection

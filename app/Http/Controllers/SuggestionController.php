@@ -1,13 +1,18 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\BoardingList;
 use App\Models\FoodMenu;
 
 class SuggestionController extends Controller
 {
     public function index()
     {
-        $foodVendors = FoodMenu::where('approved', 1)->get();
-        return view('includes.suggestions', compact('foodVendors'));
+        $boardings = BoardingList::all();   // Fetch all room listings
+        $foodVendors = FoodMenu::all();     // Fetch all food vendors
+
+        return view('suggestions', compact('boardings', 'foodVendors'));
     }
 }

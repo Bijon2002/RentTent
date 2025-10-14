@@ -61,6 +61,7 @@ Route::get('/suggestions', [SuggestionController::class, 'index'])->name('sugges
 
 use App\Http\Controllers\BoardingController;
 
+
 Route::middleware(['auth'])->group(function () {
   Route::get('/provider/boardings', [BoardingController::class, 'index'])->name('provider.boardings.index');
     Route::post('/provider/boardings', [BoardingController::class, 'store'])->name('provider.boardings.store');
@@ -109,3 +110,7 @@ Route::get('/finder/subscribed-foods', [FinderController::class, 'subscribedFood
 
 // This is the CORRECT route
 Route::delete('/subscription/{id}/cancel', [FinderController::class, 'cancelSubscription'])->name('subscription.cancel');
+
+
+//controller  for suggestions 
+//use controller

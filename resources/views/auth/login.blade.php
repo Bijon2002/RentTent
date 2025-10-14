@@ -83,7 +83,7 @@
                 <img src="{{ asset('assets/images/food.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Slide 2">
               </div>
               <div class="carousel-item h-100">
-                <img src="{{ asset('assets/images/park.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Slide 3">
+                <img src="{{ asset('assets/images/park.jpeg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Slide 3">
               </div>
               <div class="carousel-item h-100">
                 <img src="{{ asset('assets/images/yog.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Slide 4">
