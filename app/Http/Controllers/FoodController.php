@@ -142,3 +142,12 @@ class FoodController extends Controller
     {
         $menu = FoodMenu::with('user')->where('menu_id', $id)->firstOrFail();
 
+        $suggestions = FoodMenu::with('user')
+            ->where('menu_id', '!=', $id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('pages.vendor-details', compact('menu', 'suggestions'));
+    }
+}
