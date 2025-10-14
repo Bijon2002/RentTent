@@ -114,4 +114,40 @@ class FoodController extends Controller
     // =======================
     // Show all approved food menus to public (marketplace)
     // =======================
-   
+    public function marketplace(Request $request)
+    {
+        $query = FoodMenu::where('approved', 1);
+
+        if ($request->filled('food_type')) {
+            $query->whereIn('food_type', (array) $request->food_type);
+        }
+
+        if ($request->filled('rating')) {
+            $query->where('rating', '>=', $request->rating);
+        }
+
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%'.$request->location.'%');
+        }
+
+        $foodMenus = $query->get();
+
+        return view('pages.foodplans', compact('foodMenus'));
+    }
+
+    // =======================
+    // Show single vendor details
+    // =======================
+    public function show($id)
+    {
+        $menu = FoodMenu::with('user')->where('menu_id', $id)->firstOrFail();
+
+        $suggestions = FoodMenu::with('user')
+            ->where('menu_id', '!=', $id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('pages.vendor-details', compact('menu', 'suggestions'));
+    }
+}
