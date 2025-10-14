@@ -20,7 +20,7 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'User not found!');
         }
 
-        // Validate inputs
+    // Validate inputs
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -47,4 +47,4 @@ class ProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully!');
     }
-}
+}    

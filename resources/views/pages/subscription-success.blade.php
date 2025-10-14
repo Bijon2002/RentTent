@@ -14,7 +14,7 @@
 
     <div class="mt-3">
         <p>Amount Paid: Rs. {{ number_format($subscription->amount, 2) }}</p>
-        <p>Card Used: {{ $subscription->payment_info }}</p>
+       
     </div>
 
     <a href="{{ route('foodplans.index') }}" class="btn btn-primary mt-4">Back to Marketplace</a>

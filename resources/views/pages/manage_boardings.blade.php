@@ -215,9 +215,16 @@
 
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Add Boarding</button>
+        <div class="modal-footer d-flex flex-column">
+          <div class="text-center mb-3">
+            <p class="mb-1"><small class="text-muted">By adding a boarding, you agree to our <a href="#" class="text-decoration-none">Terms & Conditions</a></small></p>
+            <p class="mb-1"><small class="text-muted">10% of the advance amount will be collected as security deposit</small></p>
+            <p class="mb-0"><small class="text-muted">You can add more boardings at any time</small></p>
+          </div>
+          <div class="d-flex gap-2 justify-content-end">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add Boarding</button>
+          </div>
         </div>
       </div>
     </form>
