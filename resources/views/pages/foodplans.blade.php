@@ -224,7 +224,7 @@ body {
             </div>
 
             <div class="filter-buttons">
-                <button class="btn-apply" id="applyFilters">Apply Filters</button>
+                <button class="btn-apply" id="applyFilters">Apply Filters </button>
                 <button class="btn-reset" id="resetFilters">Reset</button>
             </div>
         </aside>
@@ -232,7 +232,7 @@ body {
         <div class="main-content">
             <div class="section-header">
                 <h2>Available Restaurants ({{ $foodMenus->count() }})</h2>
-                <p>Discover amazing food from top-rated vendors near you</p>
+                <p>Discover amazing food from top-rated vendors near you !</p>
             </div>
 
             <div class="vendors">
