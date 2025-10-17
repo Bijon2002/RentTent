@@ -224,7 +224,7 @@ body {
             </div>
 
             <div class="filter-buttons">
-                <button class="btn-apply" id="applyFilters">Apply Filters</button>
+                <button class="btn-apply" id="applyFilters">Apply Filters </button>
                 <button class="btn-reset" id="resetFilters">Reset</button>
             </div>
         </aside>
