@@ -76,11 +76,6 @@ Route::get('/properties', [BoardingController::class, 'approvedBoardings'])->nam
 Route::get('/boarding/{id}', [BoardingController::class, 'show'])
     ->name('boarding.details');
 
-    Route::middleware('auth')->group(function() {
-    Route::post('/boarding/{id}/reserve', [BookingController::class, 'reserve'])
-         ->name('booking.reserve');
-});
-
 Route::get('/boarding/{boarding}/book-now', [BookingController::class, 'bookNow'])
     ->name('booking.booknow');
 

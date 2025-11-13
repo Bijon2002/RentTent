@@ -1,14 +1,34 @@
 @extends('Layout.cmaster')
 
-@section('content')
-<div class="signup-page d-flex align-items-center justify-content-center" style="min-height:100vh; background: transparent;">
+@push('styles')
 <style>
-@media (min-width: 1200px) {
-  .signup-page {
-    margin-top: 1cm !important;
+  /* Override master layout background for login page */
+  body.animated-gradient-bg {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset('img/m.png') }}') no-repeat center center fixed !important;
+    background-size: cover !important;
   }
-}
+  
+  /* Remove padding from main content area */
+  body.animated-gradient-bg main {
+    padding: 0 !important;
+  }
+  
+  /* Make login page take full width */
+  .login-page-wrapper {
+    min-height: calc(100vh - 200px);
+    width: 100%;
+    padding-top: 4cm;
+    padding-bottom: 2cm;
+  }
+  
+  .login-page-wrapper .container {
+    position: relative;
+  }
 </style>
+@endpush
+
+@section('content')
+<div class="login-page-wrapper d-flex justify-content-center">
   
   <!-- Floating error popup -->
   @if(session('login_error'))
@@ -28,8 +48,8 @@
   </script>
   @endif
 
-  <div class="container" style="margin-top:3cm;">
-    <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 1200px; width:100%;">
+  <div class="container">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 1200px; width:100%; margin: 0 auto;">
       <div class="row g-0">
         <!-- Left Section (Form) -->
         <div class="col-md-6 p-5 bg-transparent" style="height: 600px; overflow-y: auto; background: transparent;">
@@ -37,15 +57,6 @@
             <h2 class="fw-bold">Welcome Back</h2>
             <p class="text-muted">Sign in to your account</p>
           </div>
-
-          <!-- Social Login -->
-          <div class="d-flex justify-content-center gap-3 mb-4">
-            <a href="#" class="btn btn-outline-dark rounded-circle"><i class="fa-brands fa-apple"></i></a>
-            <a href="#" class="btn btn-outline-danger rounded-circle"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="btn btn-outline-dark rounded-circle"><i class="fa-brands fa-x-twitter"></i></a>
-          </div>
-
-          <p class="text-center text-muted mb-3">or</p>
 
           <!-- Login Form -->
           <form method="POST" action="{{ route('login.post') }}">

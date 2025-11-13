@@ -1,17 +1,37 @@
 @extends('Layout.cmaster')
 
-@section('content')
-<div class="signup-page d-flex align-items-center justify-content-center" style="min-height:100vh; background: transparent;">
+@push('styles')
 <style>
-@media (min-width: 1200px) {
-  .signup-page {
-    margin-top: 1cm !important;
+  /* Override master layout background for signup page */
+  body.animated-gradient-bg {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset('img/m.png') }}') no-repeat center center fixed !important;
+    background-size: cover !important;
   }
-}
-</style>
   
-  <div class="container" style="margin-top:3cm;">
-    <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 1200px; width:100%;">
+  /* Remove padding from main content area */
+  body.animated-gradient-bg main {
+    padding: 0 !important;
+  }
+  
+  /* Make signup page take full width */
+  .signup-page-wrapper {
+    min-height: calc(100vh - 200px);
+    width: 100%;
+    padding-top: 4cm;
+    padding-bottom: 2cm;
+  }
+  
+  .signup-page-wrapper .container {
+    position: relative;
+  }
+</style>
+@endpush
+
+@section('content')
+<div class="signup-page-wrapper d-flex justify-content-center">
+  
+  <div class="container">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 1200px; width:100%; margin: 0 auto;">
       <div class="row g-0">
         <!-- Left Section (Form) -->
         <div class="col-md-6 p-5 bg-transparent" style="height: 600px; overflow-y: auto; background: transparent;">
@@ -20,39 +40,51 @@
             <p class="text-muted">Sign up for your account</p>
           </div>
 
-          <div class="d-flex justify-content-center gap-3 mb-4">
-            <a href="#" class="btn btn-outline-dark rounded-circle"><i class="fa-brands fa-apple"></i></a>
-            <a href="#" class="btn btn-outline-danger rounded-circle"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="btn btn-outline-dark rounded-circle"><i class="fa-brands fa-x-twitter"></i></a>
-          </div>
-          <p class="text-center text-muted mb-3">or</p>
-
           <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
 
+            @if(session('success'))
+              <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+
             <div class="mb-3">
               <label class="form-label">Username</label>
-              <input type="text" class="form-control" name="name" placeholder="eli_trekker" required>
+              <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="eli_trekker" value="{{ old('name') }}" required>
+              @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" placeholder="elitrekker@gmail.com" required>
+              <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="elitrekker@gmail.com" value="{{ old('email') }}" required>
+              @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">Mobile Number</label>
-              <input type="text" class="form-control" name="phone" required>
+              <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required>
+              @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">National ID</label>
-              <input type="text" class="form-control" name="nic_number" required>
+              <input type="text" class="form-control @error('nic_number') is-invalid @enderror" name="nic_number" value="{{ old('nic_number') }}" required>
+              @error('nic_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">Upload NIC Image</label>
-              <input type="file" class="form-control" name="nic_image" accept="image/*" required>
+              <input type="file" class="form-control @error('nic_image') is-invalid @enderror" name="nic_image" accept="image/*">
+              @error('nic_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
@@ -65,26 +97,30 @@
                 </ul>
               </div>
               <label class="form-label">Role</label>
-              <select class="form-select" name="role" required>
-                <option value="finder">Finder</option>
-                <option value="provider">Provider</option>
-                <option value="vendor">Vendor</option>
+              <select class="form-select @error('role') is-invalid @enderror" name="role" required>
+                <option value="finder" {{ old('role')=='finder' ? 'selected' : '' }}>Finder</option>
+                <option value="provider" {{ old('role')=='provider' ? 'selected' : '' }}>Provider</option>
+                <option value="vendor" {{ old('role')=='vendor' ? 'selected' : '' }}>Vendor</option>
               </select>
+              @error('role') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">Profile Picture</label>
-              <input type="file" class="form-control" name="profile_pic" accept="image/*">
+              <input type="file" class="form-control @error('profile_pic') is-invalid @enderror" name="profile_pic" accept="image/*">
+              @error('profile_pic') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">Location</label>
-              <input type="text" class="form-control" name="location" required>
+              <input type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" required>
+              @error('location') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
               <label class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" required>
+              <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+              @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="mb-3">
@@ -248,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
         {name: 'email', label: 'Email'},
         {name: 'phone', label: 'Mobile Number'},
         {name: 'nic_number', label: 'National ID'},
-        {name: 'nic_image', label: 'NIC Image'},
         {name: 'role', label: 'Role'},
         {name: 'location', label: 'Location'},
         {name: 'password', label: 'Password'},

@@ -1,20 +1,18 @@
 <div class="fullscreen-slideshow w-100">
   <!-- Slides Container -->
   <div class="slides-container position-relative w-100 h-100" style="overflow: hidden;">
- <!-- Slide 1 -->
-<div class="slide position-absolute w-100 h-100" 
-     style="background: url('{{ asset('assets/images/home1.jpg') }}') center/cover;">
-  <div class="content position-absolute slide-content slide-content-first">
-    <h2 class="text-white display-4 fw-bold mb-3 neon-text">Premium Camping</h2>
-    <p class="text-light-blue fs-3">Luxury tents with premium amenities,</p>
-  </div>
-</div>
-
-
+    <!-- Slide 1 -->
+    <div class="slide position-absolute w-100 h-100" 
+         style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1600&q=80') center/cover;">
+      <div class="content position-absolute slide-content slide-content-first">
+        <h2 class="text-white display-4 fw-bold mb-3 neon-text">Premium Camping</h2>
+        <p class="text-light-blue fs-3">Luxury tents with premium amenities</p>
+      </div>
+    </div>
 
     <!-- Slide 2 -->
     <div class="slide position-absolute w-100 h-100" 
-           style="background: url('{{ asset('assets/images/bf.jpg') }}') center/cover;">
+         style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80') center/cover;">
       <div class="content position-absolute slide-content slide-content-right">
         <h2 class="text-white display-4 fw-bold mb-3 neon-text">Gourmet Food</h2>
         <p class="text-light-blue fs-3">From top local vendors</p>
@@ -23,22 +21,13 @@
 
     <!-- Slide 3 -->
     <div class="slide position-absolute w-100 h-100" 
-          style="background: url('{{ asset('assets/images/home3.webp') }}') center/cover;">
+         style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1600&q=80') center/cover;">
       <div class="content position-absolute slide-content slide-content-center">
-        <h2 class="text-white display-4 fw-bold mb-3 neon-text">24/7 Health Support</h2>
-        <p class="text-light-blue fs-3">Medical chat assistance anytime</p>
+        <h2 class="text-white display-4 fw-bold mb-3 neon-text">Comfortable Properties</h2>
+        <p class="text-light-blue fs-3">Find your perfect space</p>
       </div>
     </div>
   </div>
-
-  <!-- Slide 2 -->
-    <div class="slide position-absolute w-100 h-100" 
-           style="background: url('{{ asset('assets/images/foo.jpg') }}') center/cover;">
-      <div class="content position-absolute slide-content slide-content-right">
-        <h2 class="text-white display-4 fw-bold mb-3 neon-text">Health Services</h2>
-        <p class="text-light-blue fs-3">From local doctors</p>
-      </div>
-    </div>
 
   <!-- Permanent Tagline -->
   <div class="tagline-container position-absolute w-100 text-center" style="top: 40%; left: 50%; transform: translateX(-50%); z-index: 10;">
