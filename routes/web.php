@@ -109,3 +109,7 @@ Route::delete('/subscription/{id}/cancel', [FinderController::class, 'cancelSubs
 
 //controller  for suggestions 
 //use controller
+
+Route::get('/healthz', function() {
+    return response()->json(['status' => 'ok']);
+});
