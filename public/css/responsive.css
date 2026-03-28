@@ -1,0 +1,684 @@
+/* ===================================================================
+   MOBILE RESPONSIVE STYLES FOR RENTTENT
+   This file contains all responsive styles for mobile, tablet, and desktop
+   =================================================================== */
+
+/* ===================================================================
+   BASE RESPONSIVE SETTINGS
+   =================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===================================================================
+   MOBILE FIRST - BASE STYLES (0px - 575px)
+   =================================================================== */
+
+/* Container Adjustments */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Typography Scaling */
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+}
+
+p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Touch-Friendly Buttons */
+.btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+}
+
+.btn-sm {
+    min-height: 38px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Form Controls */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    min-height: 44px;
+    padding: 0.75rem;
+}
+
+/* ===================================================================
+   NAVBAR RESPONSIVE STYLES
+   =================================================================== */
+
+@media (max-width: 991px) {
+    .floating-navbar {
+        top: 0;
+        border-radius: 0;
+        margin: 0;
+        max-width: 100%;
+        height: auto;
+        min-height: 70px;
+        padding: 0.5rem 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-brand img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem !important;
+    }
+
+    .navbar-collapse {
+        background: rgba(0, 5, 15, 0.95);
+        backdrop-filter: blur(10px);
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .navbar-nav {
+        gap: 0 !important;
+    }
+
+    .nav-link {
+        padding: 0.75rem 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1rem;
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .navbar-toggler {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Language selector and profile on mobile */
+    #languageSelect {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .signup-btn,
+    .login-btn {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+/* ===================================================================
+   HERO SECTION RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 767px) {
+    .hero {
+        height: 300px;
+        margin-top: 70px !important;
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===================================================================
+   CARDS & GRID LAYOUTS RESPONSIVE
+   =================================================================== */
+
+/* Property Cards */
+@media (max-width: 767px) {
+    .properties {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .property-card {
+        padding: 1rem;
+    }
+
+    .property-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .property-title {
+        font-size: 1.1rem;
+    }
+
+    .property-info p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Vendor Cards */
+@media (max-width: 767px) {
+    .vendors {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .vendor-card {
+        padding: 1rem;
+    }
+
+    .vendor-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .vendor-name {
+        font-size: 1.1rem;
+    }
+
+    .vendor-info p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ===================================================================
+   SIDEBAR & FILTER RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 991px) {
+    .main-container {
+        flex-direction: column !important;
+    }
+
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 1050;
+        overflow-y: auto;
+        border-radius: 0;
+        display: none;
+        background: white;
+        padding-bottom: 6rem;
+    }
+
+    .sidebar.show-filter {
+        display: block !important;
+    }
+
+    .filter-buttons {
+        position: fixed !important;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: white;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 0;
+        z-index: 1051;
+    }
+
+    .mobile-filter-btn {
+        display: block !important;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .close-filters {
+        display: block !important;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 992px) {
+    .mobile-filter-btn {
+        display: none !important;
+    }
+
+    .close-filters {
+        display: none !important;
+    }
+}
+
+/* ===================================================================
+   FOOTER RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 767px) {
+    footer .row {
+        text-align: center;
+    }
+
+    footer .col-lg-4,
+    footer .col-lg-2,
+    footer .col-lg-3,
+    footer .col-md-4 {
+        margin-bottom: 2rem;
+    }
+
+    footer .social-icons {
+        justify-content: center;
+    }
+
+    footer ul {
+        padding-left: 0;
+    }
+
+    footer .col-md-6 {
+        text-align: center !important;
+        margin-bottom: 1rem;
+    }
+
+    footer .input-group {
+        flex-direction: column;
+    }
+
+    footer .input-group input {
+        border-radius: 8px !important;
+        margin-bottom: 0.5rem;
+    }
+
+    footer .input-group button {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+}
+
+/* ===================================================================
+   PROFILE PAGE RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 767px) {
+    .glass-card {
+        padding: 1.5rem !important;
+        margin: 1rem !important;
+    }
+
+    .glass-card img.rounded-circle {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    #sidebarToggle {
+        top: 1rem !important;
+        right: 1rem !important;
+    }
+
+    .row .col-md-6 {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===================================================================
+   CHATBOT RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 767px) {
+    #chatbot-float-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    #chatbot-float-btn img {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    #chat-window {
+        width: 100% !important;
+        height: 80vh !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 12px 12px 0 0 !important;
+    }
+}
+
+/* ===================================================================
+   MODAL RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 767px) {
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .modal-content {
+        border-radius: 12px;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+/* ===================================================================
+   TABLES RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 767px) {
+    .table-responsive {
+        border: 0;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+
+    table td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem;
+        border: none;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #333;
+    }
+}
+
+/* ===================================================================
+   UTILITY CLASSES FOR MOBILE
+   =================================================================== */
+
+/* Hide on mobile */
+.hide-mobile {
+    display: none !important;
+}
+
+/* Show only on mobile */
+.show-mobile {
+    display: block !important;
+}
+
+/* Text alignment utilities */
+.text-mobile-center {
+    text-align: center !important;
+}
+
+/* Spacing utilities for mobile */
+.mt-mobile-2 {
+    margin-top: 1rem !important;
+}
+
+.mb-mobile-2 {
+    margin-bottom: 1rem !important;
+}
+
+.px-mobile-1 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+
+/* ===================================================================
+   TABLET STYLES (768px - 991px)
+   =================================================================== */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Typography adjustments */
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Container adjustments */
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Grid adjustments */
+    .properties,
+    .vendors {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Hero adjustments */
+    .hero {
+        height: 350px;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ===================================================================
+   DESKTOP STYLES (992px and above)
+   =================================================================== */
+
+@media (min-width: 992px) {
+    /* Show utility classes */
+    .hide-mobile {
+        display: block !important;
+    }
+
+    .show-mobile {
+        display: none !important;
+    }
+
+    /* Grid enhancements */
+    .properties {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vendors {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Sidebar sticky behavior */
+    .sidebar {
+        position: sticky !important;
+        top: 120px;
+    }
+}
+
+/* ===================================================================
+   LARGE DESKTOP STYLES (1200px and above)
+   =================================================================== */
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* Enhanced grid spacing */
+    .properties,
+    .vendors {
+        gap: 1.5rem;
+    }
+}
+
+/* ===================================================================
+   EXTRA LARGE SCREENS (1920px and above)
+   =================================================================== */
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .floating-navbar {
+        max-width: 1800px;
+        height: 90px;
+    }
+
+    .logo-text {
+        font-size: 1.6rem !important;
+    }
+
+    .nav-link {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* ===================================================================
+   LANDSCAPE ORIENTATION ADJUSTMENTS
+   =================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: 250px;
+    }
+
+    .navbar-collapse {
+        max-height: 50vh;
+    }
+
+    .sidebar {
+        height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+/* ===================================================================
+   PRINT STYLES
+   =================================================================== */
+
+@media print {
+    .navbar,
+    .footer,
+    #chatbot-float-btn,
+    #chat-window,
+    .sidebar {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+/* ===================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   =================================================================== */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid #4da6ff;
+    outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+
+    .nav-link {
+        border-bottom: 1px solid;
+    }
+}

@@ -44,16 +44,27 @@
             @csrf
 
             @if(session('success'))
-              <div class="alert alert-success">{{ session('success') }}</div>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+
+            @if(session('error'))
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             @endif
 
             @if ($errors->any())
-              <div class="alert alert-danger">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul class="mb-0">
                   @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                   @endforeach
                 </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             @endif
 
@@ -227,13 +238,16 @@
     </div>
   </div>
 </div>
-</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var agreeTerms = document.getElementById('agreeTerms');
   var continueBtn = document.getElementById('continueBtn');
   var agreeMsg = document.getElementById('agreeMsg');
   var signupForm = document.querySelector('form');
+  var letsStartBtn = document.getElementById('letsStartBtn');
+  var privacyModal = document.getElementById('privacyModal');
+  var isSubmitting = false;
 
   // Helper to show error popup
   function showError(msg) {
@@ -261,6 +275,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Show loading overlay
+  function showLoading() {
+    var loadingOverlay = document.createElement('div');
+    loadingOverlay.id = 'loadingOverlay';
+    loadingOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;';
+    loadingOverlay.innerHTML = `
+      <div style="text-align:center;color:white;">
+        <div class="spinner-border" role="status" style="width:3rem;height:3rem;"></div>
+        <p class="mt-3">Creating your account...</p>
+      </div>
+    `;
+    document.body.appendChild(loadingOverlay);
+  }
+
   if (agreeTerms && continueBtn && agreeMsg && signupForm) {
     agreeTerms.addEventListener('change', function() {
       if (agreeTerms.checked) {
@@ -273,11 +301,15 @@ document.addEventListener('DOMContentLoaded', function() {
         agreeMsg.style.display = 'block';
       }
     });
+    
     continueBtn.addEventListener('click', function() {
+      if (isSubmitting) return;
+      
       if (!agreeTerms.checked) {
         agreeMsg.style.display = 'block';
         return;
       }
+      
       // Validate all required fields
       var requiredFields = [
         {name: 'name', label: 'Username'},
@@ -289,13 +321,15 @@ document.addEventListener('DOMContentLoaded', function() {
         {name: 'password', label: 'Password'},
         {name: 'password_confirmation', label: 'Confirm Password'}
       ];
+      
       for (var i = 0; i < requiredFields.length; i++) {
         var field = signupForm.querySelector('[name="' + requiredFields[i].name + '"]');
-        if (!field || (field.type === 'file' ? !field.files.length : !field.value.trim())) {
+        if (!field || (field.type === 'file' ? false : !field.value.trim())) {
           showError(requiredFields[i].label + ' is required.');
           return;
         }
       }
+      
       // Password match validation
       var password = signupForm.querySelector('[name="password"]');
       var confirm = signupForm.querySelector('[name="password_confirmation"]');
@@ -303,10 +337,25 @@ document.addEventListener('DOMContentLoaded', function() {
         showError('Passwords do not match.');
         return;
       }
-      // If all valid, submit and redirect to login
-  signupForm.submit();
-  // After successful signup, backend should redirect to login page. Remove client-side redirect.
+      
+      // Close modal and submit form
+      isSubmitting = true;
+      var modalInstance = bootstrap.Modal.getInstance(privacyModal);
+      if (modalInstance) {
+        modalInstance.hide();
+      }
+      
+      // Show loading overlay
+      showLoading();
+      
+      // Disable submit button
+      continueBtn.disabled = true;
+      letsStartBtn.disabled = true;
+      
+      // Submit form
+      signupForm.submit();
     });
   }
 });
 </script>
+@endsection

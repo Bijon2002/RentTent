@@ -1,7 +1,7 @@
 <!-- resources/views/layouts/footer.blade.php -->
 <footer class="bg-dark-blue text-white pt-5 pb-4" data-aos="fade-up" data-aos-duration="900">
   <div class="container">
-    <div class="row g-4">
+    <div class="row g-4 g-md-4">
       <!-- Logo + Description -->
       <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
         <div class="d-flex align-items-center mb-3">

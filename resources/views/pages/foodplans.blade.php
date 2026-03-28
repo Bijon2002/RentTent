@@ -29,23 +29,23 @@ body {
 
 .sidebar {
     background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.2rem; flex: 0 0 250px;
-    /* FIX 1: Make sidebar sticky on desktop */
     position: sticky;
     top: 20px;
 }
-/* FIX 2: Mobile Overlay Styles for sidebar */
+/* Mobile Overlay Styles - Enhanced */
 @media(max-width: 991px) {
     .sidebar {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        z-index: 1000;
+        height: 100vh;
+        z-index: 1050;
         overflow-y: auto;
         border-radius: 0;
-        display: none; /* Hide by default on mobile */
-        padding-bottom: 5rem;
+        display: none;
+        padding-bottom: 6rem;
+        animation: slideIn 0.3s ease-out;
     }
     .sidebar.show-filter {
         display: block;
@@ -54,6 +54,21 @@ body {
         display: block !important;
         font-size: 1.5rem;
         cursor: pointer;
+        color: var(--primary);
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
     }
 }
 
@@ -63,14 +78,14 @@ body {
 .filter-group { margin-bottom: 1.2rem; }
 .filter-title { font-weight: 600; margin-bottom: 0.6rem; display: flex; justify-content: space-between; font-size: 0.9rem; }
 .filter-options { display: flex; flex-direction: column; gap: 0.5rem; }
-.filter-checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
-.filter-checkbox input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); }
+.filter-checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer; padding: 0.25rem 0; }
+.filter-checkbox input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; }
 .rating-stars { color: #FF9800; font-size: 0.8rem; }
 .price-range { display: flex; flex-direction: column; gap: 0.5rem; }
 .price-inputs { display: flex; gap: 0.5rem; }
-.price-inputs input { flex: 1; padding: 0.4rem; border: 1px solid #ddd; border-radius: var(--radius); font-size: 0.9rem; }
+.price-inputs input { flex: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--radius); font-size: 0.9rem; min-height: 44px; }
 
-/* FIX 3: Filter buttons sticky on mobile */
+/* Filter buttons - Mobile sticky */
 .filter-buttons {
     display: flex; gap: 0.6rem; margin-top: 1rem;
     padding-top: 1rem; border-top: 1px solid #eee;
@@ -85,18 +100,21 @@ body {
         background: #fff;
         box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
         margin-top: 0;
+        z-index: 1051;
     }
 }
 
-.filter-buttons button { flex: 1; padding: 0.6rem; border-radius: var(--radius); border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+.filter-buttons button { flex: 1; padding: 0.75rem; border-radius: var(--radius); border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem; min-height: 44px; transition: all 0.3s; }
 .btn-apply { background: var(--gradient-blue); color: white; }
+.btn-apply:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 .btn-reset { background: #f5f5f5; color: var(--dark); }
+.btn-reset:hover { background: #e0e0e0; }
 
 .main-content { flex: 1; }
 
 .hero {
     position: relative;
-    height: 350px; /* Kept at 350px, but removed the conflicting margin-top from the HTML section */
+    height: 350px;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
     background-size: cover;
     background-position: center;
@@ -110,61 +128,127 @@ body {
 .hero-content h2 { font-size: 2.2rem; margin-bottom: 1rem; }
 .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; }
 
-.btn { padding: 0.6rem 1.2rem; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; font-size: 0.9rem; }
+/* Mobile Hero Adjustments */
+@media(max-width: 767px) {
+    .hero {
+        height: 300px;
+        margin-top: 70px !important;
+    }
+    .hero-content {
+        padding: 1rem;
+    }
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.btn { padding: 0.75rem 1.25rem; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; font-size: 0.9rem; min-height: 44px; }
 .btn-darkblue { background: var(--gradient-blue); color: #fff; text-decoration: none; }
 .btn-darkblue:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
-/* FIX 4: Increased max width for better desktop space utilization */
+/* Container responsive */
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 1.5rem;
 }
 
-/* FIX 5: Vendors Grid - Ensuring 3-in-a-row on desktop */
+@media(max-width: 767px) {
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* Vendors Grid - Mobile First */
 .vendors {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.2rem;
 }
 @media(min-width: 768px){ .vendors { grid-template-columns: 1fr 1fr; } }
-@media(min-width: 1200px){ .vendors { grid-template-columns: 1fr 1fr 1fr; } } /* 3-in-a-row for wide screens */
+@media(min-width: 1200px){ .vendors { grid-template-columns: 1fr 1fr 1fr; } }
 
 .vendor-card {
     background: #fff;
-    padding: 1.2rem;
+    padding: 1rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Important for same height rows */
+    height: 100%;
 }
 .vendor-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
 
-/* FIX 6: Image Aspect Ratio for uniform height and alignment (Slightly landscape, 16:10) */
+/* Vendor Image - Responsive */
 .vendor-image {
     width: 100%;
-    aspect-ratio: 16 / 10; /* Fixed aspect ratio for uniform height */
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     border-radius: var(--radius);
     margin-bottom: 0.8rem;
     height: auto;
 }
 
-.vendor-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; }
-.vendor-name { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+@media(max-width: 767px) {
+    .vendor-image {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+.vendor-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem; }
+.vendor-name { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; word-break: break-word; }
 .vendor-info { flex-grow: 1; margin-bottom: 1rem; }
 .vendor-info p { margin-bottom: 0.4rem; font-size: 0.9rem; }
 .vendor-info strong { color: var(--primary); }
+
+@media(max-width: 767px) {
+    .vendor-name {
+        font-size: 1rem;
+    }
+    .vendor-info p {
+        font-size: 0.85rem;
+    }
+}
+
 .view-more-btn { margin-top: auto; width: 100%; text-align: center; }
-.status-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.status-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
 .status-open { background-color: #e8f5e9; color: #2e7d32; }
 .status-closed { background-color: #ffebee; color: #c62828; }
 
-/* FIX 7: Mobile filter button display logic */
+/* Mobile filter button */
 .mobile-filter-btn { display: block; margin-bottom: 1rem; width: 100%; }
 @media(min-width: 992px) { .mobile-filter-btn { display: none; } }
+
+/* Section Header Responsive */
+.section-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+@media(max-width: 767px) {
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    .section-header p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Form control improvements for mobile */
+.form-control {
+    font-size: 16px !important;
+    min-height: 44px;
+}
 </style>
 @endpush
 

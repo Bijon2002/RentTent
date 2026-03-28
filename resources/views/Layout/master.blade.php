@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="theme-color" content="#0a1f3d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>@yield('title', 'RentTent')</title>
 
   <!-- Bootstrap CSS -->
@@ -17,6 +20,10 @@
 
   <!-- Custom CSS -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+  
+  <!-- Mobile Responsive CSS -->
+  <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+  <link href="{{ asset('css/mobile-utilities.css') }}" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" href="{{ asset('favicon.ico') }}">

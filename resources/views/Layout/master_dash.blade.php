@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#0a1f3d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>@yield('title', 'User Dashboard')</title>
 
   <!-- Bootstrap CSS -->
@@ -13,6 +16,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Mobile Responsive CSS -->
+  <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+  <link href="{{ asset('css/mobile-utilities.css') }}" rel="stylesheet" />
 
   <style>
     :root {
@@ -64,9 +71,24 @@
       .main-content { margin-left: 80px; width: calc(100% - 80px); }
     }
     @media (max-width: 768px) {
-      .sidebar { width: 0; overflow: hidden; }
-      .sidebar.active { width: 250px; }
-      .main-content { margin-left: 0; width: 100%; }
+      .sidebar { 
+        width: 0; 
+        overflow: hidden; 
+        transform: translateX(-100%);
+      }
+      .sidebar.active { 
+        width: 280px;
+        transform: translateX(0);
+      }
+      .main-content { 
+        margin-left: 0 !important; 
+        width: 100% !important;
+        padding: 1rem !important;
+      }
+      .glass-card {
+        padding: 1.5rem !important;
+        margin: 1rem 0 !important;
+      }
     }
 
     #chatbot-float-btn {
@@ -89,6 +111,26 @@
     #chatbot-float-btn:hover {
       transform: translateY(-7px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    
+    @media (max-width: 767px) {
+      #chatbot-float-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+      }
+      #chatbot-float-btn img {
+        width: 44px !important;
+        height: 44px !important;
+      }
+      #chat-window {
+        width: 100% !important;
+        height: 80vh !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 12px 12px 0 0 !important;
+      }
     }
 
     #loader {

@@ -101,6 +101,90 @@ $role = isset($userSession['role']) ? $userSession['role'] : ($user->role ?? nul
     .logo-text { font-size: 1.6rem !important; } .nav-link { font-size: 1.1rem !important; }
     .signup-btn, .login-btn { font-size:1.1rem !important; padding:0.6rem 1.5rem !important; }
   }
+  
+  /* Mobile Navbar Improvements */
+  @media (max-width: 991px) {
+    .floating-navbar {
+      top: 0;
+      border-radius: 0;
+      margin: 0;
+      max-width: 100%;
+      height: auto;
+      min-height: 70px;
+      padding: 0.5rem 0;
+    }
+    
+    .navbar-brand img {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .logo-text {
+      font-size: 1.1rem !important;
+    }
+    
+    .navbar-collapse {
+      background: rgba(0, 5, 15, 0.95);
+      backdrop-filter: blur(10px);
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    
+    .navbar-nav {
+      gap: 0 !important;
+    }
+    
+    .nav-link {
+      padding: 0.75rem 0 !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 1rem;
+      justify-content: flex-start;
+    }
+    
+    .nav-link:last-child {
+      border-bottom: none;
+    }
+    
+    .navbar-toggler {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.5rem 0.75rem;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    
+    #languageSelect {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .signup-btn,
+    .login-btn {
+      display: block;
+      width: 100%;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    
+    .d-flex.gap-2.align-items-center {
+      flex-direction: column;
+      align-items: stretch !important;
+      gap: 0.5rem !important;
+    }
+    
+    .dropdown-menu {
+      position: static !important;
+      transform: none !important;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }
+  
   .floating-navbar .container { display:flex; justify-content:space-between; align-items:center; height:100%; padding:0 1rem; }
   .navbar-brand img { border:1px solid rgba(100,200,255,0.3); transition: all 0.3s ease; }
   .logo-text { font-weight:700; font-size:1.3rem; color:white; transition: all 0.3s ease; }
@@ -137,5 +221,26 @@ $role = isset($userSession['role']) ? $userSession['role'] : ($user->role ?? nul
     border: 1px solid rgba(77,166,255,0.5);
     padding: 0.2rem 0.5rem;
     font-size: 0.85rem;
+  }
+
+  /* Ensure action buttons and select align vertically */
+  .floating-navbar .d-flex.gap-2.align-items-center > .form-select,
+  .floating-navbar .d-flex.gap-2.align-items-center > .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .floating-navbar .signup-btn, .floating-navbar .login-btn {
+    line-height: 1;
+    margin: 0;
+  }
+
+  /* Small tweak: make select match button height exactly */
+  .floating-navbar .d-flex.gap-2.align-items-center > .form-select {
+    padding: 0 0.5rem;
   }
 </style>

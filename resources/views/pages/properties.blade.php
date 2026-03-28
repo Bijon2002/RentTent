@@ -22,6 +22,8 @@
     color: #e74c3c;
     margin-left: 0.5rem;
     transition: transform 0.2s;
+    min-width: 44px;
+    min-height: 44px;
 }
 .btn-heart.liked i { color: #c0392b; transform: scale(1.2); }
 
@@ -41,19 +43,20 @@ body {
     position: sticky;
     top: 20px;
 }
-/* Mobile Overlay Styles */
+/* Mobile Overlay Styles - Enhanced for better UX */
 @media(max-width: 991px) {
     .sidebar {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        z-index: 1000;
+        height: 100vh;
+        z-index: 1050;
         overflow-y: auto;
         border-radius: 0;
         display: none;
-        padding-bottom: 5rem;
+        padding-bottom: 6rem;
+        animation: slideIn 0.3s ease-out;
     }
     .sidebar.show-filter {
         display: block;
@@ -62,6 +65,21 @@ body {
         display: block !important;
         font-size: 1.5rem;
         cursor: pointer;
+        color: var(--primary);
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
     }
 }
 
@@ -71,12 +89,12 @@ body {
 .filter-group { margin-bottom: 1.2rem; }
 .filter-title { font-weight: 600; margin-bottom: 0.6rem; display: flex; justify-content: space-between; font-size: 0.9rem; }
 .filter-options { display: flex; flex-direction: column; gap: 0.5rem; }
-.filter-checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
-.filter-checkbox input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); }
+.filter-checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer; padding: 0.25rem 0; }
+.filter-checkbox input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; }
 
 .price-range { display: flex; flex-direction: column; gap: 0.5rem; }
 .price-inputs { display: flex; gap: 0.5rem; }
-.price-inputs input { flex: 1; padding: 0.4rem; border: 1px solid #ddd; border-radius: var(--radius); font-size: 0.9rem; }
+.price-inputs input { flex: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--radius); font-size: 0.9rem; min-height: 44px; }
 
 /* Filter buttons alignment fix */
 .filter-buttons {
@@ -97,20 +115,23 @@ body {
         background: #fff;
         box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
         margin-top: 0;
+        z-index: 1051;
     }
 }
 @media(min-width: 992px) { .filter-buttons { position: static; padding-bottom: 0; border-top: 1px solid #eee; } }
 
 
-.filter-buttons button { flex: 1; padding: 0.6rem; border-radius: var(--radius); border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+.filter-buttons button { flex: 1; padding: 0.75rem; border-radius: var(--radius); border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem; min-height: 44px; transition: all 0.3s; }
 .btn-apply { background: var(--gradient-blue); color: white; }
+.btn-apply:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 .btn-reset { background: #f5f5f5; color: var(--dark); }
+.btn-reset:hover { background: #e0e0e0; }
 
 .main-content { flex: 1; }
 
 .hero {
     position: relative;
-    height: 420px; /* increased height */
+    height: 420px;
     margin-top: -1cm;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
     background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center;
@@ -119,36 +140,58 @@ body {
 .hero-content h2 { font-size: 2.2rem; margin-bottom: 0.2rem; }
 .hero-content p { font-size: 1.1rem; margin-bottom: 1.5rem; }
 
-.btn { padding: 0.6rem 1.2rem; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; font-size: 0.9rem; }
+/* Mobile Hero Adjustments */
+@media(max-width: 767px) {
+    .hero {
+        height: 300px;
+        margin-top: 70px !important;
+    }
+    .hero-content {
+        padding: 1rem;
+        margin-top: 0;
+    }
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+}
+
+.btn { padding: 0.75rem 1.25rem; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; font-size: 0.9rem; min-height: 44px; }
 .btn-darkblue { background: var(--gradient-blue); color: #fff; text-decoration: none; }
 .btn-darkblue:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
-/* FIX: Increased max width for better space utilization on large screens (Laptops/Desktops) */
+/* Container responsiveness */
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 1.5rem;
 }
 
-/* FIX: Properties Grid for 2-in-a-row alignment on laptops */
+@media(max-width: 767px) {
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* Properties Grid - Mobile First */
 .properties {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.2rem;
 }
 @media(min-width: 768px){
-    /* 2 columns for tablets */
     .properties { grid-template-columns: 1fr 1fr; }
 }
 @media(min-width: 992px){
-    /* 2 columns for laptops/desktops, giving maximum width to cards */
     .properties { grid-template-columns: 1fr 1fr; }
 }
 
-/* Property Card Adjustments for reduced height/density */
+/* Property Card - Mobile Optimized */
 .property-card {
     background: #fff;
-    padding: 0.8rem; /* Reduced padding slightly */
+    padding: 1rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: 0.3s;
@@ -158,17 +201,22 @@ body {
 }
 .property-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
 
-/* Image Aspect Ratio - Set to 2:1 (shorter height) */
+/* Image Aspect Ratio - Responsive */
 .property-image {
     width: 100%;
     aspect-ratio: 2 / 1;
     object-fit: cover;
     border-radius: var(--radius);
-    margin-bottom: 0.6rem; /* Reduced margin */
+    margin-bottom: 0.6rem;
     height: auto;
 }
 
-/* Placeholder for no image should match new aspect ratio */
+@media(max-width: 767px) {
+    .property-image {
+        aspect-ratio: 16 / 9;
+    }
+}
+
 .image-placeholder {
     width: 100%;
     aspect-ratio: 2 / 1;
@@ -181,19 +229,55 @@ body {
     justify-content: center;
     text-align: center;
     padding: 1rem;
+    font-size: 0.9rem;
 }
 
-.property-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; } /* Reduced margin */
-.property-title { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.3rem; } /* Reduced margin */
-.property-info { flex-grow: 1; margin-bottom: 0.8rem; } /* Reduced margin */
-.property-info p { margin-bottom: 0.3rem; font-size: 0.9rem; } /* Reduced margin */
+@media(max-width: 767px) {
+    .image-placeholder {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+.property-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.property-title { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.3rem; word-break: break-word; }
+.property-info { flex-grow: 1; margin-bottom: 0.8rem; }
+.property-info p { margin-bottom: 0.3rem; font-size: 0.9rem; }
+
+@media(max-width: 767px) {
+    .property-title {
+        font-size: 1rem;
+    }
+    .property-info p {
+        font-size: 0.85rem;
+    }
+}
 
 .view-more-btn { margin-top: auto; width: 100%; text-align: center; }
-.status-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.status-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
 .status-available { background-color: #e8f5e9; color: #2e7d32; }
 .status-unavailable { background-color: #ffebee; color: #c62828; }
 .mobile-filter-btn { display: block; margin-bottom: 1rem; width: 100%; }
 @media(min-width: 992px) { .mobile-filter-btn { display: none; } }
+
+/* Section Header Responsive */
+.section-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+@media(max-width: 767px) {
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    .section-header p {
+        font-size: 0.9rem;
+    }
+}
 </style>
 @endpush
 
